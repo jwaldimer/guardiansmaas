@@ -28,5 +28,13 @@ module Guardiansmaas
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.generators do |g|
+      g.template_engine nil #to skip views
+      g.test_framework  nil #to skip test framework
+      g.assets  false #to skip assets
+      g.helper false #to skip helpers
+      g.stylesheets false #to skip stylesheets
+      g.javascripts false
+    end
   end
 end
