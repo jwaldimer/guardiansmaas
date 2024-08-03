@@ -4,6 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.save
-    render json: resource, status: :created, serializer: UserSessionSerializer
+    render_response(resource, UserSessionSerializer, 'Signed up sucessfully.', :created)
   end
 end

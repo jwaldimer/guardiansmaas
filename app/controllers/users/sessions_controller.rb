@@ -1,5 +1,4 @@
-class Users::SessionsController < Devise::SessionsController
-  
+class Users::SessionsController < Devise::SessionsController  
   respond_to :json
 
   private
@@ -11,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def register_success
-    render json: { message: 'Signed up successfully.' }
+    render_response(resource, UserSessionSerializer, 'Logged in sucessfully.', :created)
   end
 
   def register_failed
