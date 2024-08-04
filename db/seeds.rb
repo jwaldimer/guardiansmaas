@@ -9,7 +9,7 @@
 #   end
 
 # Call seed files from db/seeds
-seed_file_names = %i[weeks services contracts]
+seed_file_names = %i[weeks services contracts shifts]
 
 seed_file_names.each do |file|
   file_path = Rails.root.join("db/seeds/#{file}_seed.rb")
