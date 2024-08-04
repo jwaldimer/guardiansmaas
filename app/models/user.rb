@@ -14,7 +14,7 @@ class User < ApplicationRecord
   def generate_unique_color
     self.color = loop do
       color = SecureRandom.hex(3)
-      break random_color unless User.exists?(color: color)
+      break color unless User.exists?(color: color)
     end
   end
 end
