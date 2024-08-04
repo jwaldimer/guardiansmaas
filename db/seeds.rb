@@ -8,6 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+puts 'Cleaning data from Shifts...'
+Shift.destroy_all
+puts 'Cleaning data from Contracts...'
+Contract.destroy_all
+puts 'Cleaning data from Services...'
+Service.destroy_all
+puts 'Cleaning data from Weeks...'
+Week.destroy_all
+
 # Call seed files from db/seeds
 seed_file_names = %i[weeks services contracts shifts]
 

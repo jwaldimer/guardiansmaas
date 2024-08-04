@@ -5,5 +5,4 @@ services = [
   { name: 'Monitoreo ERP', description: 'Monitoreo del sistema ERP' }
 ]
 
-Service.destroy_all
 Service.create(services)
