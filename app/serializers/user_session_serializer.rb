@@ -1,5 +1,8 @@
 class UserSessionSerializer < ActiveModel::Serializer
   attributes :id,
              :email,
-             :jti
+             :name,
+             :last_name,
+             :jti,
+             :color
 end

@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :shifts
   has_many :availabilities
 
+  def full_name
+    "#{name} #{last_name}"
+  end
+
   private
 
   def generate_unique_color
