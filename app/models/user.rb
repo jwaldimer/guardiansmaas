@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :shifts
   has_many :availabilities
 
+  accepts_nested_attributes_for :availabilities, allow_destroy: true
+
   def full_name
     "#{name} #{last_name}"
   end

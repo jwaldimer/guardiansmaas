@@ -9,6 +9,6 @@ class Ability
     can %i[index], Service
     can %i[index], Week
     can %i[find], Shift
-    can %i[index create update], Availability
+    can %i[index create], Availability
   end
 end

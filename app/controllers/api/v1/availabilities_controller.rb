@@ -14,7 +14,7 @@ class Api::V1::AvailabilitiesController < ApplicationController
 
     data = {
       shifts: shifts,
-      availabilties: availabilities,
+      availabilities: availabilities,
       user: current_user
     }
 
@@ -22,21 +22,35 @@ class Api::V1::AvailabilitiesController < ApplicationController
   end
 
   def create
-    shifts_ids = params[shifts_ids]
-    availabilities = []
-    
-    shifts_ids.each do |shift_id|
-      availability = { user_id: 10, shift_id: shift_id }
-      availabilities << availability
-    end
+    shifts_ids = params[:shifts_ids]
+    service_id = params[:service_id]
+    week_id = params[:week_id]
 
-    resources = Availability.create(availabilities)
+    shifts_old_ids = Shift.where(service_id: service_id, week_id: week_id).pluck(:id)
 
-    return render_error('Error al crear las disponibilidades') unless resource
+    current_user.availabilities.where(shift_id: shifts_old_ids).destroy_all
 
-    render_response(resources, UserSessionSerializer, 'Disponibilidades registradas exitosamente.', :created)
+    availabilities = shifts_ids.map { |shift_id|  { shift_id: shift_id } }
+
+    @resources = current_user.availabilities.create(availabilities)
+
+    return render_error('Error al crear las disponibilidades') if exists_any_error
+
+    assign_shifts_to_users_availables(service_id, week_id)
+
+    render_message('Disponibilidades registradas exitosamente.', :created)
   end
 
-  def update
+  private
+
+  def assign_shifts_to_users_availables(service_id, week_id)
+    assigner = ShiftAssigner.new(service_id, week_id)
+
+    assigner.assign_shifts
   end
+
+  def exists_any_error
+    @resources.any? { |resource| resource.errors.present? }
+  end
+
 end

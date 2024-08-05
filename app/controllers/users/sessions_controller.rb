@@ -18,6 +18,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def register_failed
-    render_error
+    render_message('Email o contraseña inválidos.', :unauthorized)
   end
 end

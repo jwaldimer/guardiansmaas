@@ -10,7 +10,7 @@ class Api::V1::AvailabiltiesShiftsSerializer < ActiveModel::Serializer
 
   def availability_per_shifts
     shifts = object[:shifts]
-    availabilities = object[:availabilties] || []
+    availabilities = object[:availabilities] || []
 
     shifts.group_by(&:date).map do |day, shifts|
       {
