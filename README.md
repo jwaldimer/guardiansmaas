@@ -128,7 +128,7 @@ Te week_id and service_id must be sended as query params
                         "start": 19,
                         "end": 20,
                         "status": "assigned",
-                        "user_name": "Pedro Racoon",
+                        "user_name": "Pedro Picapiedra",
                         "user_color": "4d6359"
                     }
                 ]
