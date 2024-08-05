@@ -1,4 +1,9 @@
 class Api::V1::ShiftsController < ApplicationController
+  before_action :authenticate_user!
+  
+  load_and_authorize_resource
+  check_authorization
+  
   def find
     service_id = params[:service_id]
     week_id = params[:week_id]

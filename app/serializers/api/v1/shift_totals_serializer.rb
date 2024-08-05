@@ -1,20 +1,20 @@
 class Api::V1::ShiftTotalsSerializer < ActiveModel::Serializer
   attributes :totals_by_users,
-             :shift_by_days
+             :shifts_by_days
 
   def totals_by_users
-    users = User.all
+    object.group_by(&:user_id).map do |user_id, shifts|
+      user = User.find(user_id) unless user_id.nil?
 
-    users.map do |user|
       {
-        name: user.full_name,
-        total: object.select { |shift| shift.user_id == user.id }.size,
-        color: user.color
+        name: user_id.nil? ? 'Sin asignar' : user.full_name,
+        total: shifts.size,
+        color: user_id.nil? ? nil : "##{user.color}"
       }
     end
   end
 
-  def shift_by_days
+  def shifts_by_days
     object.group_by(&:date).map do |day, shifts|
       {
         day: day,

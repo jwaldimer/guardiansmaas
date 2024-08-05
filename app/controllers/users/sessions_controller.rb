@@ -1,4 +1,4 @@
-class Users::SessionsController < Devise::SessionsController  
+class Users::SessionsController < Devise::SessionsController
   respond_to :json
 
   private
@@ -10,10 +10,14 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def register_success
-    render_response(resource, UserSessionSerializer, 'Logged in sucessfully.', :created)
+    render_response(resource, UserSessionSerializer, 'Inicio de sesión exitoso.', :created)
+  end
+
+  def respond_to_on_destroy
+    head :no_content    
   end
 
   def register_failed
-    render json: { message: "Something went wrong." }
+    render_error
   end
 end

@@ -4,7 +4,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.save
-    render_response(resource, UserSessionSerializer, 'Signed up sucessfully.', :created)
+
+    return render_error('Error al intentar registrar el usuario') unless resource.persisted?
+
+    render_response(resource, UserSessionSerializer, 'Usuario registrado exitosamente.', :created)
   end
 
   private

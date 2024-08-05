@@ -1,4 +1,9 @@
 class Api::V1::ServicesController < ApplicationController
+  before_action :authenticate_user!
+
+  load_and_authorize_resource
+  check_authorization
+
   def index
     services = Service.all
 
