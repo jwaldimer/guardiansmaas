@@ -21,7 +21,8 @@ Service.all.each_with_index do |service, index|
           week: week,
           start: hour,
           end: hour + 1,
-          date: date_formated
+          date: date_formated,
+          week_day: day
         )
       end
     end

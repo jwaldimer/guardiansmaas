@@ -15,9 +15,9 @@ class Api::V1::ShiftTotalsSerializer < ActiveModel::Serializer
   end
 
   def shifts_by_days
-    object.group_by(&:date).map do |day, shifts|
+    object.sort_by(&:week_day).group_by(&:date).map do |day, shifts|
       {
-        day: day,
+        date: day,
         shifts: shifts.map { |shift| Api::V1::ShiftSerializer.new(shift) }
       }
     end

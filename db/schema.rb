@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_04_054327) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_05_184118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_054327) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "date"
+    t.integer "week_day"
     t.index ["service_id"], name: "index_shifts_on_service_id"
     t.index ["user_id"], name: "index_shifts_on_user_id"
     t.index ["week_id"], name: "index_shifts_on_week_id"
