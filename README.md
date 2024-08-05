@@ -99,6 +99,58 @@ Te week_id and service_id must be sended as query params
 
 **Endpoint**: `GET /api/v1/shifts/find?week_id=294&service_id=13`
 
+**Response**:
+```json
+{
+    "status": {
+        "code": 200,
+        "message": "Datos retornados exitosamente."
+    },
+    "data": {
+        "totals_by_users": [
+            {
+                "name": "Pedro Picapiedra",
+                "total": 15,
+                "color": "#4d6359"
+            },
+            {
+                "name": "Sin asignar",
+                "total": 38,
+                "color": null
+            }
+        ],
+        "shifts_by_days": [
+            {
+                "date": "Lunes 05 de agosto",
+                "shifts": [
+                    {
+                        "id": 14433,
+                        "start": 19,
+                        "end": 20,
+                        "status": "assigned",
+                        "user_name": "Pedro Racoon",
+                        "user_color": "4d6359"
+                    }
+                ]
+            },
+            {
+                "date": "Martes 06 de agosto",
+                "shifts": [
+                    {
+                        "id": 14484,
+                        "start": 20,
+                        "end": 21,
+                        "status": "unassigned",
+                        "user_name": null,
+                        "user_color": null
+                    }
+                ]
+            }            
+        ]
+    }
+}
+```
+
 ### 6. Register User Availabilities and Calculate Assignments
 
 **Endpoint**: `POST /api/v1/availabilities`
@@ -119,6 +171,43 @@ Te week_id and service_id must be sended as query params
 Te week_id and service_id must be sended as query params
 
 **Endpoint**: `GET /api/v1/availabilities?week_id=347&service_id=16`
+
+**Response**:
+```json
+{
+    "status": {
+        "code": 200,
+        "message": "Datos retornados exitosamente."
+    },
+    "data": {
+        "user": {
+            "name": "Pedro Picapiedra",
+            "color": "e0aa64"
+        },
+        "availability_per_shifts": [
+            {
+                "day": "Miércoles 07 de agosto",
+                "shifts": [
+                    {
+                        "id": 14447,
+                        "start": 23,
+                        "end": 24,
+                        "status": "assigned",
+                        "is_available": true
+                    },
+                    {
+                        "id": 14448,
+                        "start": 19,
+                        "end": 20,
+                        "status": "unassigned",
+                        "is_available": false
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
 
 ## Contribution
 Contributions are welcome. If you would like to contribute, please open an issue or a pull request in the repository.
