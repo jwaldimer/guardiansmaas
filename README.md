@@ -2,7 +2,7 @@
 
 Guardianes MaaS is a RESTful API application developed in Ruby on Rails 7 to manage the shifts of engineers who monitor critical services. This application allows users to register, log in, manage availabilities, and assign shifts in a balanced and efficient manner.
 ## Entity-Relationship Model (ER)
-This is the model ER user for the project
+This is the model ER used for the project
 
 ![ER Model](image.png)
 
